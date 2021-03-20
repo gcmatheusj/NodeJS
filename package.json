@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Matheus <goca1377@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "12.x"
+  },
   "devDependencies": {
     "@shelf/jest-mongodb": "^1.2.3",
     "@types/bcrypt": "^3.0.0",
