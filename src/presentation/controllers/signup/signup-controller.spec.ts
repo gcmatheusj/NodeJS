@@ -1,7 +1,7 @@
 import { SignUpController } from './signup-controller'
-import { MissingParamError, ServerError } from '../../errors'
+import { MissingParamError, ServerError, EmailInUseError } from '../../errors'
 import { AddAccount, AddAccountModel, AccountModel, HttpRequest, Validation, Authentication, AuthenticationModel } from './signup-controller-protocols'
-import { ok, serverError, badRequest } from '../../helpers/http/http-helper'
+import { ok, serverError, badRequest, forbidden } from '../../helpers/http/http-helper'
 
 const makeAuthentication = (): Authentication => {
   class AuthenticationStub implements Authentication {
@@ -103,6 +103,16 @@ describe('SignUp Controller', () => {
       email: 'any_email@email.com',
       password: 'any_password'
     })
+  })
+
+  it('should return 403 if AddAccount returns null', async () => {
+    const { sut, addAccountStub } = makeSut()
+
+    jest.spyOn(addAccountStub, 'add').mockReturnValueOnce(null)
+
+    const httpResponse = await sut.handle(makeFakeRequest())
+
+    expect(httpResponse).toEqual(forbidden(new EmailInUseError()))
   })
 
   it('should return 200 if valid data is provided', async () => {
