@@ -21,11 +21,25 @@ const makeFakeRequest = (): HttpRequest => ({
   }
 })
 
+interface SutTypes {
+  sut: AddSurveyController
+  validationStub: Validation
+}
+
+const makeSut = (): SutTypes => {
+  const validationStub = makeValidation()
+
+  const sut = new AddSurveyController(validationStub)
+
+  return {
+    sut,
+    validationStub
+  }
+}
+
 describe('AddSurvey Controller', () => {
   it('should call Validation with correct values', async () => {
-    const validationStub = makeValidation()
-
-    const sut = new AddSurveyController(validationStub)
+    const { sut, validationStub } = makeSut()
 
     const validateSpy = jest.spyOn(validationStub, 'validate')
 
