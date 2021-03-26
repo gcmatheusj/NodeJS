@@ -44,8 +44,8 @@
     "test:integration": "npm test -- --watch -c jest-integration.config.js",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:staged": "npm test -- --findRelatedTests",
-    "test:ci": "npm test -- --coverage",
-    "test:coveralls": "npm test:ci && coveralls < coverage/lcov.info"
+    "test:ci": "npm run test -- --coverage",
+    "test:coveralls": "npm run test:ci && coveralls < coverage/lcov.info"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
