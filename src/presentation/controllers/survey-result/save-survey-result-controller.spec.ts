@@ -4,7 +4,7 @@ import {
   LoadSurveyById,
   SaveSurveyResult,
   SurveyResultModel,
-  SaveSurveyResultModel,
+  SaveSurveyResultParams,
   SurveyModel,
   forbidden,
   serverError,
@@ -23,7 +23,7 @@ const makeFakeSurvey = (): SurveyModel => ({
   date: new Date()
 })
 
-const makeFakeSurveyResultData = (): SaveSurveyResultModel => ({
+const makeFakeSurveyResultData = (): SaveSurveyResultParams => ({
   accountId: 'valid_account_id',
   surveyId: 'valid_survey_id',
   answer: 'valid_answer',
@@ -46,7 +46,7 @@ const makeLoadSurveyById = (): LoadSurveyById => {
 
 const makeSaveSurveyResult = (): SaveSurveyResult => {
   class SaveSurveyResultStub implements SaveSurveyResult {
-    async save (data: SaveSurveyResultModel): Promise<SurveyResultModel> {
+    async save (data: SaveSurveyResultParams): Promise<SurveyResultModel> {
       return makeFakeSurveyResult()
     }
   }
