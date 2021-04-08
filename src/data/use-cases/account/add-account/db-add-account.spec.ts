@@ -105,7 +105,7 @@ describe('DbAddAccount Usecase', () => {
       password: 'valid_password'
     }
 
-    jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail').mockReturnValueOnce(new Promise(resolve => resolve(mockAccountModel())))
+    jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail').mockReturnValueOnce(Promise.resolve(mockAccountModel()))
 
     const account = await sut.add(accountData)
 
