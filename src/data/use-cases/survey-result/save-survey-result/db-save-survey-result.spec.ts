@@ -51,7 +51,7 @@ describe('DbSaveSurveyResult Usecase', () => {
     await expect(promise).rejects.toThrow()
   })
 
-  it('should call SaveSurveyResultRepository with correct values', async () => {
+  it('should surveyResultModel on success', async () => {
     const { sut } = makeSut()
 
     const surveyResultData = mockSaveSurveyResultParams()
