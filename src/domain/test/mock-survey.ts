@@ -10,8 +10,16 @@ export const mockAddSurveyParams = (): AddSurveyParams => ({
   date: new Date()
 })
 
-export const mockSurveyModel = (): SurveyModel => Object.assign({}, mockAddSurveyParams(), {
-  id: 'any_id'
+export const mockSurveyModel = (): SurveyModel => ({
+  id: 'any_survey_id',
+  question: 'any_question',
+  answers: [{
+    answer: 'any_answer'
+  }, {
+    image: 'any_image',
+    answer: 'other_answer'
+  }],
+  date: new Date()
 })
 
 export const mockSurveyModels = (): SurveyModel[] => {
