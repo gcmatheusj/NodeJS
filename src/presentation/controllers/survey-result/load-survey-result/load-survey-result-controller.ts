@@ -5,6 +5,7 @@ import {
   LoadSurveyById,
   LoadSurveyResult,
   forbidden,
+  ok,
   serverError,
   InvalidParamError
 } from './load-survey-result-controller-protocols'
@@ -25,9 +26,9 @@ export class LoadSurveyResultController implements Controller {
         return forbidden(new InvalidParamError('surveyId'))
       }
 
-      await this.loadSurveyResult.load(surveyId)
+      const surveyResult = await this.loadSurveyResult.load(surveyId)
 
-      return null
+      return ok(surveyResult)
     } catch (error) {
       return serverError(error)
     }
